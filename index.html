@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catkin Heart — Erin Linebarger</title>
+    <meta name="description" content="Catkin Heart, a novel by Erin Linebarger. Sign up to be notified on release." />
+
+    <style>
+      @font-face {
+        font-family: "HankenGro";
+        src: url("fonts/Hanken_Grotesk/HankenGrotesk-VariableFont_wght.ttf")
+          format("truetype");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <style>
+      :root {
+        --navy:     #090c9b;
+        --azure:    #3d52d5;
+        --amber:    #f7b801;
+        --seagrass: #66a182;
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Lora", Georgia, serif;
+        overflow-x: hidden;
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         HERO  ·  ocean floor — deepest point
+         ───────────────────────────────────────────────────────── */
+      .hero {
+        position: relative;
+        width: 100%;
+        height: 100svh;
+        min-height: 520px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+        overflow: hidden;
+        /* Very dark midnight ocean. Faint glow at the top = distant surface. */
+        background: #030a16;
+        background-image: radial-gradient(
+          ellipse 90% 55% at 50% -5%,
+          #0c1e48 0%,
+          transparent 65%
+        );
+      }
+
+      .hero-title {
+        font-family: "HankenGro", sans-serif;
+        font-size: clamp(4.5rem, 19vw, 15rem);
+        line-height: 0.88;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        user-select: none;
+        background: linear-gradient(135deg, #2d3436 0%, #4b633d 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-meta {
+        margin-top: clamp(1.5rem, 3.5vw, 2.8rem);
+      }
+
+      .hero-rule {
+        width: 36px;
+        height: 1px;
+        background: var(--azure);
+        opacity: 0.5;
+        margin: 0 auto 1.1rem;
+      }
+
+      .hero-author {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+        font-weight: 600;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #5a70a8;
+      }
+
+      .hero-tagline {
+        font-family: "Lora", Georgia, serif;
+        font-style: italic;
+        font-size: clamp(0.78rem, 1.3vw, 0.95rem);
+        color: #38486a;
+        margin-top: 0.45rem;
+      }
+
+      .scroll-cue {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #1e2e50;
+        font-size: 1rem;
+        animation: nudge 2.6s ease-in-out infinite;
+        user-select: none;
+      }
+      @keyframes nudge {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(8px);
+        }
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         Shared section layout
+         ───────────────────────────────────────────────────────── */
+      section {
+        padding: clamp(4.5rem, 10vw, 9rem) clamp(1.5rem, 8vw, 6rem);
+      }
+
+      .section-label {
+        display: block;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        margin-bottom: 1.3rem;
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         DESCRIPTION  ·  deep water — pressure, stillness, blue
+         ───────────────────────────────────────────────────────── */
+      .description {
+        background: #06102a;
+        color: #a8b8d8;
+      }
+
+      .description .section-label {
+        color: var(--seagrass);
+      }
+
+      .description-inner {
+        max-width: 660px;
+        margin: 0 auto;
+      }
+
+      .description h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.8rem, 4.5vw, 3rem);
+        font-weight: 700;
+        line-height: 1.1;
+        color: #d0daee;
+        margin-bottom: 0.75rem;
+      }
+
+      .thin-rule {
+        display: block;
+        width: 44px;
+        height: 1px;
+        border: none;
+        margin-bottom: 2.2rem;
+      }
+      .thin-rule--azure {
+        background: var(--azure);
+        opacity: 0.55;
+      }
+
+      .description p {
+        font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+        line-height: 1.92;
+        color: #6a7a9a;
+        margin-bottom: 1.2rem;
+      }
+      .description p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         EXCERPT  ·  rising — light starts to reach here
+         ───────────────────────────────────────────────────────── */
+      .excerpt {
+        background: #081e2e;
+        color: #b0c8d8;
+        text-align: center;
+        /* Gentle upward warmth beginning at the base */
+        background-image: linear-gradient(
+          to top,
+          rgba(80, 45, 5, 0.18) 0%,
+          transparent 50%
+        );
+      }
+
+      .excerpt .section-label {
+        color: #5a8a78;
+      }
+
+      .excerpt-inner {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .quote-mark {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(4rem, 8vw, 7.5rem);
+        line-height: 0.55;
+        color: var(--amber);
+        display: block;
+        margin-bottom: 1.4rem;
+        opacity: 0.7;
+      }
+
+      .excerpt blockquote {
+        font-style: italic;
+        font-size: clamp(1.05rem, 1.85vw, 1.4rem);
+        line-height: 1.85;
+        color: #98b8c8;
+        margin-bottom: 2rem;
+      }
+
+      .excerpt cite {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #4a6a7a;
+        font-style: normal;
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         SIGNUP  ·  breaking the surface — full golden hour
+         ───────────────────────────────────────────────────────── */
+      .signup {
+        background: var(--amber);
+        /* Warm diffuse glow — the sun is right here */
+        background-image: radial-gradient(
+          ellipse 70% 80% at 50% 110%,
+          rgba(255, 200, 50, 0.6) 0%,
+          transparent 65%
+        );
+        color: #12080a;
+        text-align: center;
+      }
+
+      .signup .section-label {
+        color: #7a4400;
+      }
+
+      .signup-inner {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .signup h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2rem, 4.5vw, 3.2rem);
+        font-weight: 700;
+        line-height: 1.18;
+        color: #0e0500;
+        margin-bottom: 0.8rem;
+      }
+
+      .signup .subtext {
+        font-style: italic;
+        font-size: clamp(0.88rem, 1.3vw, 1rem);
+        color: rgba(18, 8, 0, 0.55);
+        margin-bottom: 2.6rem;
+        line-height: 1.68;
+      }
+
+      /* KIT EMBED stub */
+      .signup-form {
+        display: flex;
+        max-width: 400px;
+        margin: 0 auto 1rem;
+        border-radius: 3px;
+        overflow: hidden;
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .signup-form input[type="email"] {
+        flex: 1;
+        min-width: 0;
+        padding: 0.95rem 1.15rem;
+        font-family: "Lora", serif;
+        font-size: 0.92rem;
+        background: rgba(255, 255, 255, 0.38);
+        color: #0e0500;
+        border: none;
+        outline: none;
+        transition: background 0.15s;
+      }
+      .signup-form input[type="email"]::placeholder {
+        color: rgba(18, 8, 0, 0.38);
+      }
+      .signup-form input[type="email"]:focus {
+        background: rgba(255, 255, 255, 0.58);
+      }
+
+      .signup-form button {
+        padding: 0.95rem 1.35rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        /* Navy button — the depth we rose from, now a confident anchor */
+        background: #06102a;
+        color: #b8ccf0;
+        border: none;
+        cursor: pointer;
+        transition: background 0.18s;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .signup-form button:hover {
+        background: #090c9b;
+      }
+      .signup-form button:active {
+        background: #050e22;
+      }
+
+      .privacy-note {
+        font-size: 0.75rem;
+        color: rgba(18, 8, 0, 0.4);
+        font-style: italic;
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         FOOTER  ·  warm dusk — the light settling
+         ───────────────────────────────────────────────────────── */
+      footer {
+        background: #180c00;
+        color: rgba(200, 155, 60, 0.35);
+        text-align: center;
+        padding: 2.25rem 2rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.83rem;
+        letter-spacing: 0.15em;
+      }
+
+      /* ─────────────────────────────────────────────────────────
+         Mobile
+         ───────────────────────────────────────────────────────── */
+      @media (max-width: 540px) {
+        .signup-form {
+          flex-direction: column;
+          border-radius: 4px;
+        }
+        .signup-form input[type="email"] {
+          text-align: center;
+        }
+        .signup-form button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════════════════
+         HERO  ·  ocean floor
+         ═══════════════════════════════════════════════════════ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 class="hero-title" id="hero-title">
+        <span>CATKIN</span>
+        <span>HEART</span>
+      </h1>
+      <div class="hero-meta">
+        <div class="hero-rule"></div>
+        <p class="hero-author">Erin Linebarger</p>
+        <!-- REPLACE: tagline -->
+        <p class="hero-tagline">A novel</p>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">↓</div>
+    </section>
+
+    <main>
+    <!-- ═══════════════════════════════════════════════════════
+         DESCRIPTION  ·  deep water
+         ═══════════════════════════════════════════════════════ -->
+    <section class="description">
+      <div class="description-inner">
+        <span class="section-label">About the book</span>
+        <h2 data-aos="fade-up"><em>Catkin Heart</em></h2>
+        <hr
+          class="thin-rule thin-rule--azure"
+          data-aos="fade-up"
+          data-aos-delay="60"
+        />
+
+        <!-- REPLACE: book description paragraphs -->
+        <p data-aos="fade-up" data-aos-delay="100">
+          [Book description — paragraph one. Replace this with your text.]
+        </p>
+        <p data-aos="fade-up" data-aos-delay="140">
+          [Book description — paragraph two. Replace this with your text.]
+        </p>
+        <p data-aos="fade-up" data-aos-delay="180">
+          [Book description — paragraph three. Replace this with your text.]
+        </p>
+        <!-- END REPLACE -->
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         EXCERPT  ·  rising — light filters in
+         ═══════════════════════════════════════════════════════ -->
+    <section class="excerpt">
+      <div class="excerpt-inner" data-aos="fade-in" data-aos-duration="1000">
+        <span class="section-label">An excerpt</span>
+        <span class="quote-mark" aria-hidden="true">"</span>
+        <blockquote>
+          <!-- REPLACE: excerpt passage -->
+          <p>[Excerpt from the book — replace this with a compelling passage that gives readers a taste of your voice and world.]</p>
+          <!-- END REPLACE -->
+        </blockquote>
+        <cite>— Catkin Heart</cite>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SIGNUP  ·  golden hour — breaking the surface
+         ═══════════════════════════════════════════════════════ -->
+    <section class="signup" id="notify">
+      <div class="signup-inner">
+        <span class="section-label">Coming soon</span>
+        <h2 data-aos="fade-up">Be the first<br />to know.</h2>
+        <p class="subtext" data-aos="fade-up" data-aos-delay="80">
+          Sign up and I'll let you know the moment<br /><em>Catkin Heart</em> is
+          released.
+        </p>
+
+        <!-- KIT EMBED: replace this entire form with your Kit embed snippet -->
+        <form
+          class="signup-form"
+          action="#"
+          method="post"
+          data-aos="fade-up"
+          data-aos-delay="140"
+          onsubmit="return false;"
+        >
+          <input
+            type="email"
+            name="email_address"
+            placeholder="your@email.com"
+            required
+            autocomplete="email"
+          />
+          <button type="submit">Notify me</button>
+        </form>
+        <!-- END KIT EMBED -->
+
+        <p class="privacy-note" data-aos="fade-up" data-aos-delay="180">
+          No spam. Just the release date.
+        </p>
+      </div>
+    </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════
+         FOOTER  ·  warm dusk
+         ═══════════════════════════════════════════════════════ -->
+    <footer>
+      <p>© 2026 Erin Linebarger</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({ once: true, duration: 700, easing: "ease-out-cubic" });
+    </script>
+  </body>
+</html>
