@@ -49,6 +49,17 @@
         font-family: "Lora", Georgia, serif;
         overflow-x: hidden;
       }
+      /* Subtle concrete grain over the whole page */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.08;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 160px 160px;
+      }
 
       /* ─────────────────────────────────────────────────────────
          SITE HEADER
@@ -132,14 +143,15 @@
       .hero-title {
         font-family: "HankenGro", sans-serif;
         font-size: clamp(4.5rem, 19vw, 15rem);
+        text-transform: uppercase;
         line-height: 0.88;
         font-weight: 800;
         letter-spacing: -0.02em;
         user-select: none;
-        background: linear-gradient(135deg, #2d3436 0%, #4b633d 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        /* Mossy green — mid-tone so the shadow reads clearly beneath */
+        color: #66a182;
+        /* SVG filter: organic edge displacement + hard concrete shadow */
+        filter: url(#concrete-moss);
       }
 
       .hero-meta {
@@ -437,6 +449,61 @@
     </style>
   </head>
   <body>
+    <!-- SVG filter definitions (hidden) -->
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+    >
+      <defs>
+        <!--
+          concrete-moss: two-stage filter
+          1. feTurbulence → feDisplacementMap  — roughens letter edges organically (the moss)
+          2. feFlood → feComposite → feOffset  — hard zero-blur shadow (the concrete depth)
+        -->
+        <filter
+          id="concrete-moss"
+          x="-4%"
+          y="-10%"
+          width="114%"
+          height="126%"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.052 0.048"
+            numOctaves="4"
+            seed="11"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="3.5"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="rough"
+          />
+          <feFlood
+            flood-color="#0e160a"
+            flood-opacity="0.85"
+            result="shadow-col"
+          />
+          <feComposite
+            in="shadow-col"
+            in2="rough"
+            operator="in"
+            result="shadow-shape"
+          />
+          <feOffset in="shadow-shape" dx="5" dy="5" result="shadow" />
+          <feMerge>
+            <feMergeNode in="shadow" />
+            <feMergeNode in="rough" />
+          </feMerge>
+        </filter>
+      </defs>
+    </svg>
+
     <!-- ═══════════════════════════════════════════════════════
          SITE HEADER  ·  hides on scroll down, returns on scroll up
          ═══════════════════════════════════════════════════════ -->
