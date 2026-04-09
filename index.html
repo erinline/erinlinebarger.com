@@ -29,10 +29,58 @@
 
     <style>
       :root {
+        /* Brand palette */
         --navy: #090c9b;
         --azure: #3d52d5;
         --amber: #f7b801;
         --seagrass: #66a182;
+
+        /* ── Depth layers (ocean floor → rising) ── */
+        --depth-abyss: #030a16; /* hero bg — absolute bottom */
+        --depth-glow: #0c1e48; /* hero radial highlight — faint distant surface */
+        --depth-pressure: #06102a; /* description bg + signup button bg */
+        --depth-rising: #081e2e; /* excerpt bg — light starts filtering in */
+        --depth-active: #050e22; /* button:active */
+
+        /* ── Water tones (text on dark sections) ── */
+        --light-water: #b8ccf0; /* nav title + signup button text */
+        --water-bright: #d0daee; /* description h2 */
+        --water-body: #a8b8d8; /* description section text */
+        --water-muted: #6a7a9a; /* description paragraphs */
+        --water-author: #5a70a8; /* hero author name */
+        --water-dim: #38486a; /* hero tagline */
+        --water-shadow: #1e2e50; /* scroll cue */
+        --water-surface: #b0c8d8; /* excerpt section text */
+        --water-quote: #98b8c8; /* excerpt blockquote */
+        --water-cite: #4a6a7a; /* excerpt cite */
+
+        /* ── Warmth rising (excerpt → signup transition) ── */
+        --warmth-hint: rgba(80, 45, 5, 0.18); /* excerpt base gradient */
+        --seagrass-dim: #5a8a78; /* excerpt section-label */
+
+        /* ── Surface / golden hour (signup section) ── */
+        --surface-dark: #12080a; /* signup section text */
+        --surface-ink: #0e0500; /* signup h2 + input text */
+        --amber-deep: #7a4400; /* signup section-label */
+        --amber-glow: rgba(255, 200, 50, 0.6); /* signup radial glow */
+        --surface-subtext: rgba(18, 8, 0, 0.55);
+        --surface-placeholder: rgba(18, 8, 0, 0.38);
+        --surface-note: rgba(18, 8, 0, 0.4);
+
+        /* ── Header ── */
+        --header-bg: rgba(3, 10, 22, 0.88);
+
+        /* ── Footer / dusk ── */
+        --dusk-dark: #180c00;
+        --dusk-text: rgba(200, 155, 60, 0.35);
+
+        /* ── SVG filter shadow ── */
+        --shadow-moss: #0e160a;
+      }
+
+      /* SVG filter flood-color via CSS (overrides presentation attribute) */
+      #concrete-moss feFlood {
+        flood-color: var(--shadow-moss);
       }
 
       *,
@@ -70,7 +118,7 @@
         left: 0;
         right: 0;
         z-index: 100;
-        background: rgba(3, 10, 22, 0.88);
+        background: var(--header-bg);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -95,7 +143,7 @@
         font-size: 0.9rem;
         font-weight: 700;
         letter-spacing: -0.01em;
-        color: #b8ccf0;
+        color: var(--light-water);
         text-decoration: none;
       }
       .nav-title:hover {
@@ -132,11 +180,11 @@
         padding: 2rem;
         overflow: hidden;
         /* Very dark midnight ocean. Faint glow at the top = distant surface. */
-        background: #030a16;
+        background: var(--depth-abyss);
         background-image: radial-gradient(
-          ellipse 90% 55% at 50% -5%,
-          #0c1e48 0%,
-          transparent 65%
+          ellipse 90% 65% at 50% 105%,
+          var(--depth-pressure) 0%,
+          transparent 85%
         );
       }
 
@@ -148,8 +196,7 @@
         font-weight: 800;
         letter-spacing: -0.02em;
         user-select: none;
-        /* Mossy green — mid-tone so the shadow reads clearly beneath */
-        color: #66a182;
+        color: var(--seagrass);
         /* SVG filter: organic edge displacement + hard concrete shadow */
         filter: url(#concrete-moss);
       }
@@ -172,14 +219,14 @@
         font-weight: 600;
         letter-spacing: 0.3em;
         text-transform: uppercase;
-        color: #5a70a8;
+        color: var(--water-author);
       }
 
       .hero-tagline {
         font-family: "Lora", Georgia, serif;
         font-style: italic;
         font-size: clamp(0.78rem, 1.3vw, 0.95rem);
-        color: #38486a;
+        color: var(--water-dim);
         margin-top: 0.45rem;
       }
 
@@ -188,7 +235,7 @@
         bottom: 2rem;
         left: 50%;
         transform: translateX(-50%);
-        color: #1e2e50;
+        color: var(--water-shadow);
         font-size: 1rem;
         text-decoration: none;
         animation: nudge 2.6s ease-in-out infinite;
@@ -225,8 +272,8 @@
          DESCRIPTION  ·  deep water — pressure, stillness, blue
          ───────────────────────────────────────────────────────── */
       .description {
-        background: #06102a;
-        color: #a8b8d8;
+        background: var(--depth-pressure);
+        color: var(--water-body);
       }
 
       .description .section-label {
@@ -243,7 +290,7 @@
         font-size: clamp(1.8rem, 4.5vw, 3rem);
         font-weight: 700;
         line-height: 1.1;
-        color: #d0daee;
+        color: var(--water-bright);
         margin-bottom: 0.75rem;
       }
 
@@ -262,7 +309,7 @@
       .description p {
         font-size: clamp(0.95rem, 1.35vw, 1.08rem);
         line-height: 1.92;
-        color: #6a7a9a;
+        color: var(--water-muted);
         margin-bottom: 1.2rem;
       }
       .description p:last-child {
@@ -273,19 +320,19 @@
          EXCERPT  ·  rising — light starts to reach here
          ───────────────────────────────────────────────────────── */
       .excerpt {
-        background: #081e2e;
-        color: #b0c8d8;
+        background: var(--depth-rising);
+        color: var(--water-surface);
         text-align: center;
         /* Gentle upward warmth beginning at the base */
         background-image: linear-gradient(
           to top,
-          rgba(80, 45, 5, 0.18) 0%,
+          var(--warmth-hint) 0%,
           transparent 50%
         );
       }
 
       .excerpt .section-label {
-        color: #5a8a78;
+        color: var(--seagrass-dim);
       }
 
       .excerpt-inner {
@@ -307,7 +354,7 @@
         font-style: italic;
         font-size: clamp(1.05rem, 1.85vw, 1.4rem);
         line-height: 1.85;
-        color: #98b8c8;
+        color: var(--water-quote);
         margin-bottom: 2rem;
       }
 
@@ -316,7 +363,7 @@
         font-size: 0.78rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
-        color: #4a6a7a;
+        color: var(--water-cite);
         font-style: normal;
       }
 
@@ -328,15 +375,15 @@
         /* Warm diffuse glow — the sun is right here */
         background-image: radial-gradient(
           ellipse 70% 80% at 50% 110%,
-          rgba(255, 200, 50, 0.6) 0%,
+          var(--amber-glow) 0%,
           transparent 65%
         );
-        color: #12080a;
+        color: var(--surface-dark);
         text-align: center;
       }
 
       .signup .section-label {
-        color: #7a4400;
+        color: var(--amber-deep);
       }
 
       .signup-inner {
@@ -349,14 +396,14 @@
         font-size: clamp(2rem, 4.5vw, 3.2rem);
         font-weight: 700;
         line-height: 1.18;
-        color: #0e0500;
+        color: var(--surface-ink);
         margin-bottom: 0.8rem;
       }
 
       .signup .subtext {
         font-style: italic;
         font-size: clamp(0.88rem, 1.3vw, 1rem);
-        color: rgba(18, 8, 0, 0.55);
+        color: var(--surface-subtext);
         margin-bottom: 2.6rem;
         line-height: 1.68;
       }
@@ -378,13 +425,13 @@
         font-family: "Lora", serif;
         font-size: 0.92rem;
         background: rgba(255, 255, 255, 0.38);
-        color: #0e0500;
+        color: var(--surface-ink);
         border: none;
         outline: none;
         transition: background 0.15s;
       }
       .signup-form input[type="email"]::placeholder {
-        color: rgba(18, 8, 0, 0.38);
+        color: var(--surface-placeholder);
       }
       .signup-form input[type="email"]:focus {
         background: rgba(255, 255, 255, 0.58);
@@ -397,8 +444,8 @@
         font-weight: 700;
         letter-spacing: 0.05em;
         /* Navy button — the depth we rose from, now a confident anchor */
-        background: #06102a;
-        color: #b8ccf0;
+        background: var(--depth-pressure);
+        color: var(--light-water);
         border: none;
         cursor: pointer;
         transition: background 0.18s;
@@ -406,15 +453,15 @@
         flex-shrink: 0;
       }
       .signup-form button:hover {
-        background: #090c9b;
+        background: var(--navy);
       }
       .signup-form button:active {
-        background: #050e22;
+        background: var(--depth-active);
       }
 
       .privacy-note {
         font-size: 0.75rem;
-        color: rgba(18, 8, 0, 0.4);
+        color: var(--surface-note);
         font-style: italic;
       }
 
@@ -422,8 +469,8 @@
          FOOTER  ·  warm dusk — the light settling
          ───────────────────────────────────────────────────────── */
       footer {
-        background: #180c00;
-        color: rgba(200, 155, 60, 0.35);
+        background: var(--dusk-dark);
+        color: var(--dusk-text);
         text-align: center;
         padding: 2.25rem 2rem;
         font-family: "Cormorant Garamond", serif;
@@ -460,6 +507,7 @@
           concrete-moss: two-stage filter
           1. feTurbulence → feDisplacementMap  — roughens letter edges organically (the moss)
           2. feFlood → feComposite → feOffset  — hard zero-blur shadow (the concrete depth)
+          flood-color is overridden by CSS: #concrete-moss feFlood { flood-color: var(--shadow-moss) }
         -->
         <filter
           id="concrete-moss"
@@ -546,14 +594,14 @@
 
           <!-- REPLACE: book description paragraphs -->
           <p data-aos="fade-up" data-aos-delay="100">
-            [Book description — paragraph one. Replace this with your text.]
+            A hopecore, solarpunk fantasy about a mortal woman who stopped
+            killing immortal predators when she realized she was becoming one of
+            them.
           </p>
           <p data-aos="fade-up" data-aos-delay="140">
-            [Book description — paragraph two. Replace this with your text.]
+            The world we have is our choice.
           </p>
-          <p data-aos="fade-up" data-aos-delay="180">
-            [Book description — paragraph three. Replace this with your text.]
-          </p>
+          <p data-aos="fade-up" data-aos-delay="180">But it is a choice.</p>
           <!-- END REPLACE -->
         </div>
       </section>
