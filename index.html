@@ -274,6 +274,11 @@
       .description {
         background: var(--depth-pressure);
         color: var(--water-body);
+        background-image: radial-gradient(
+          ellipse 90% 65% at 50% 105%,
+          var(--depth-rising) 0%,
+          transparent 85%
+        );
       }
 
       .description .section-label {
@@ -323,11 +328,11 @@
         background: var(--depth-rising);
         color: var(--water-surface);
         text-align: center;
-        /* Gentle upward warmth beginning at the base */
-        background-image: linear-gradient(
-          to top,
-          var(--warmth-hint) 0%,
-          transparent 50%
+        /* Warm amber bloom at the base — anticipates the golden hour above */
+        background-image: radial-gradient(
+          ellipse 90% 65% at 50% 105%,
+          rgba(247, 184, 1, 0.1) 0%,
+          transparent 80%
         );
       }
 
@@ -372,12 +377,10 @@
          ───────────────────────────────────────────────────────── */
       .signup {
         background: var(--amber);
-        /* Warm diffuse glow — the sun is right here */
-        background-image: radial-gradient(
-          ellipse 70% 80% at 50% 110%,
-          var(--amber-glow) 0%,
-          transparent 65%
-        );
+        /* Warm diffuse glow above, dusk shadow below — the surface, just before dark */
+        background-image:
+          linear-gradient(to bottom, transparent 60%, rgba(24, 12, 0, 0.45) 100%),
+          radial-gradient(ellipse 70% 80% at 50% 110%, var(--amber-glow) 0%, transparent 65%);
         color: var(--surface-dark);
         text-align: center;
       }
