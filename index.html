@@ -379,8 +379,16 @@
         background: var(--amber);
         /* Warm diffuse glow above, dusk shadow below — the surface, just before dark */
         background-image:
-          linear-gradient(to bottom, transparent 60%, rgba(24, 12, 0, 0.45) 100%),
-          radial-gradient(ellipse 70% 80% at 50% 110%, var(--amber-glow) 0%, transparent 65%);
+          linear-gradient(
+            to bottom,
+            transparent 60%,
+            rgba(24, 12, 0, 0.45) 100%
+          ),
+          radial-gradient(
+            ellipse 70% 80% at 50% 110%,
+            var(--amber-glow) 0%,
+            transparent 65%
+          );
         color: var(--surface-dark);
         text-align: center;
       }
@@ -634,9 +642,11 @@
       <section class="signup" id="notify">
         <div class="signup-inner">
           <span class="section-label">Coming soon</span>
-          <h2 data-aos="fade-up">Be the first<br />to know.</h2>
+          <h2 data-aos="fade-up">
+            The world is a choice. Choose to stay updated.
+          </h2>
           <p class="subtext" data-aos="fade-up" data-aos-delay="80">
-            Sign up and I'll let you know the moment<br /><em>Catkin Heart</em>
+            Sign up to hear when<br /><em>Catkin Heart</em>
             is released.
           </p>
 
