@@ -419,63 +419,6 @@
         line-height: 1.68;
       }
 
-      /* KIT EMBED stub */
-      .signup-form {
-        display: flex;
-        max-width: 400px;
-        margin: 0 auto 1rem;
-        border-radius: 3px;
-        overflow: hidden;
-        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
-      }
-
-      .signup-form input[type="email"] {
-        flex: 1;
-        min-width: 0;
-        padding: 0.95rem 1.15rem;
-        font-family: "Lora", serif;
-        font-size: 0.92rem;
-        background: rgba(255, 255, 255, 0.38);
-        color: var(--surface-ink);
-        border: none;
-        outline: none;
-        transition: background 0.15s;
-      }
-      .signup-form input[type="email"]::placeholder {
-        color: var(--surface-placeholder);
-      }
-      .signup-form input[type="email"]:focus {
-        background: rgba(255, 255, 255, 0.58);
-      }
-
-      .signup-form button {
-        padding: 0.95rem 1.35rem;
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        /* Navy button — the depth we rose from, now a confident anchor */
-        background: var(--depth-pressure);
-        color: var(--light-water);
-        border: none;
-        cursor: pointer;
-        transition: background 0.18s;
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
-      .signup-form button:hover {
-        background: var(--navy);
-      }
-      .signup-form button:active {
-        background: var(--depth-active);
-      }
-
-      .privacy-note {
-        font-size: 0.75rem;
-        color: var(--surface-note);
-        font-style: italic;
-      }
-
       /* ─────────────────────────────────────────────────────────
          FOOTER  ·  warm dusk — the light settling
          ───────────────────────────────────────────────────────── */
@@ -650,29 +593,12 @@
             is released.
           </p>
 
-          <!-- KIT EMBED: replace this entire form with your Kit embed snippet -->
-          <form
-            class="signup-form"
-            action="#"
-            method="post"
-            data-aos="fade-up"
-            data-aos-delay="140"
-            onsubmit="return false;"
-          >
-            <input
-              type="email"
-              name="email_address"
-              placeholder="your@email.com"
-              required
-              autocomplete="email"
-            />
-            <button type="submit">Notify me</button>
-          </form>
-          <!-- END KIT EMBED -->
-
-          <p class="privacy-note" data-aos="fade-up" data-aos-delay="180">
-            No spam. Just the release date.
-          </p>
+          <iframe
+            src="form.html"
+            style="border: none; width: 100%"
+            height="160"
+            title="Email signup form"
+          ></iframe>
         </div>
       </section>
     </main>
@@ -682,8 +608,8 @@
          ═══════════════════════════════════════════════════════ -->
     <footer>
       <p>© 2026 Erin Linebarger</p>
-      <p style="margin-top: 0.6rem; font-size: 0.72rem; opacity: 0.6;">
-        <a href="privacy.html" style="color: inherit;">Privacy Policy</a>
+      <p style="margin-top: 0.6rem; font-size: 0.72rem; opacity: 0.6">
+        <a href="privacy.html" style="color: inherit">Privacy Policy</a>
       </p>
     </footer>
 
