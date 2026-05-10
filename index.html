@@ -286,21 +286,25 @@
       }
 
       /* ─────────────────────────────────────────────────────────
-         EXCERPT  ·  botanical midpoint — fern green
+         EXCERPT  ·  fern backdrop, torn parchment paper floats on top
          ───────────────────────────────────────────────────────── */
       .excerpt {
         background: var(--fern);
-        color: var(--text-on-fern);
         text-align: center;
+        padding: clamp(3rem, 7vw, 5.5rem) clamp(1rem, 4vw, 3rem);
       }
 
       .excerpt .section-label {
-        color: rgba(255, 191, 0, 0.75);
+        color: var(--amber);
       }
 
       .excerpt-inner {
-        max-width: 700px;
+        max-width: 680px;
         margin: 0 auto;
+        background: #f5edd8;
+        color: #2f1847;
+        padding: clamp(4rem, 8vw, 6rem) clamp(2.5rem, 5vw, 4rem);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
       }
 
       .quote-mark {
@@ -310,15 +314,19 @@
         color: var(--amber);
         display: block;
         margin-bottom: 1.4rem;
-        opacity: 0.7;
+        opacity: 0.75;
       }
 
       .excerpt blockquote {
         font-size: clamp(1.05rem, 1.85vw, 1.4rem);
         line-height: 1.85;
-        color: var(--text-on-fern);
+        color: #2f1847;
         margin-bottom: 2rem;
         text-align: justify;
+      }
+
+      .excerpt blockquote em {
+        color: #2f1847;
       }
 
       .excerpt blockquote p {
@@ -330,7 +338,7 @@
         font-size: 0.78rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
-        color: rgba(232, 245, 236, 0.55);
+        color: rgba(47, 24, 71, 0.5);
         font-style: normal;
       }
 
