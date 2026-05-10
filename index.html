@@ -29,58 +29,31 @@
 
     <style>
       :root {
-        /* Brand palette */
-        --navy: #090c9b;
-        --azure: #3d52d5;
-        --amber: #f7b801;
-        --seagrass: #66a182;
+        /* Core palette */
+        --amethyst:      #2f1847;
+        --amethyst-mid:  #3d2060;
+        --amethyst-deep: #1a0f2e;
+        --spring:        #04f06a;
+        --amber:         #ffbf00;
+        --fern:          #4b7f52;
+        --periwinkle:    #bcb6ff;
 
-        /* ── Depth layers (ocean floor → rising) ── */
-        --depth-abyss: #030a16; /* hero bg — absolute bottom */
-        --depth-glow: #0c1e48; /* hero radial highlight — faint distant surface */
-        --depth-pressure: #06102a; /* description bg + signup button bg */
-        --depth-rising: #081e2e; /* excerpt bg — light starts filtering in */
-        --depth-active: #050e22; /* button:active */
+        /* Text tokens */
+        --text-primary:  #ffffff;
+        --text-body:     rgba(188, 182, 255, 0.82);
+        --text-muted:    rgba(188, 182, 255, 0.45);
+        --text-on-fern:  #e8f5ec;
 
-        /* ── Water tones (text on dark sections) ── */
-        --light-water: #b8ccf0; /* nav title + signup button text */
-        --water-bright: #d0daee; /* description h2 */
-        --water-body: #a8b8d8; /* description section text */
-        --water-muted: #6a7a9a; /* description paragraphs */
-        --water-author: #5a70a8; /* hero author name */
-        --water-dim: #38486a; /* hero tagline */
-        --water-shadow: #1e2e50; /* scroll cue */
-        --water-surface: #b0c8d8; /* excerpt section text */
-        --water-quote: #98b8c8; /* excerpt blockquote */
-        --water-cite: #4a6a7a; /* excerpt cite */
+        /* Header */
+        --header-bg:     rgba(47, 24, 71, 0.92);
 
-        /* ── Warmth rising (excerpt → signup transition) ── */
-        --warmth-hint: rgba(80, 45, 5, 0.18); /* excerpt base gradient */
-        --seagrass-dim: #5a8a78; /* excerpt section-label */
-
-        /* ── Surface / golden hour (signup section) ── */
-        --surface-dark: #12080a; /* signup section text */
-        --surface-ink: #0e0500; /* signup h2 + input text */
-        --amber-deep: #7a4400; /* signup section-label */
-        --amber-glow: rgba(255, 200, 50, 0.6); /* signup radial glow */
-        --surface-subtext: rgba(18, 8, 0, 0.55);
-        --surface-placeholder: rgba(18, 8, 0, 0.38);
-        --surface-note: rgba(18, 8, 0, 0.4);
-
-        /* ── Header ── */
-        --header-bg: rgba(3, 10, 22, 0.88);
-
-        /* ── Footer / dusk ── */
-        --dusk-dark: #180c00;
-        --dusk-text: rgba(200, 155, 60, 0.35);
-
-        /* ── SVG filter shadow ── */
-        --shadow-moss: #0e160a;
+        /* SVG filter shadow */
+        --shadow-title:  #1a0f2e;
       }
 
-      /* SVG filter flood-color via CSS (overrides presentation attribute) */
+      /* SVG filter flood-color via CSS */
       #concrete-moss feFlood {
-        flood-color: var(--shadow-moss);
+        flood-color: var(--shadow-title);
       }
 
       *,
@@ -97,7 +70,7 @@
         font-family: "Lora", Georgia, serif;
         overflow-x: hidden;
       }
-      /* Subtle concrete grain over the whole page */
+      /* Subtle grain texture over the whole page */
       body::after {
         content: "";
         position: fixed;
@@ -121,7 +94,7 @@
         background: var(--header-bg);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         transform: translateY(0);
         transition: transform 0.3s ease;
       }
@@ -143,8 +116,9 @@
         font-size: 0.9rem;
         font-weight: 700;
         letter-spacing: -0.01em;
-        color: var(--light-water);
+        color: var(--amber);
         text-decoration: none;
+        transition: opacity 0.15s;
       }
       .nav-title:hover {
         opacity: 0.75;
@@ -156,16 +130,16 @@
         font-weight: 600;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: var(--amber);
+        color: var(--periwinkle);
         text-decoration: none;
-        transition: opacity 0.15s;
+        transition: color 0.15s;
       }
       .nav-cta:hover {
-        opacity: 0.65;
+        color: var(--amber);
       }
 
       /* ─────────────────────────────────────────────────────────
-         HERO  ·  ocean floor — deepest point
+         HERO
          ───────────────────────────────────────────────────────── */
       .hero {
         position: relative;
@@ -179,13 +153,8 @@
         text-align: center;
         padding: 2rem;
         overflow: hidden;
-        /* Very dark midnight ocean. Faint glow at the top = distant surface. */
-        background: var(--depth-abyss);
-        background-image: radial-gradient(
-          ellipse 90% 65% at 50% 105%,
-          var(--depth-pressure) 0%,
-          transparent 85%
-        );
+        /* Solid amethyst — ready to receive a background image behind an overlay */
+        background: var(--amethyst);
       }
 
       .hero-title {
@@ -196,8 +165,7 @@
         font-weight: 800;
         letter-spacing: -0.02em;
         user-select: none;
-        color: var(--seagrass);
-        /* SVG filter: organic edge displacement + hard concrete shadow */
+        color: var(--spring);
         filter: url(#concrete-moss);
       }
 
@@ -208,8 +176,8 @@
       .hero-rule {
         width: 36px;
         height: 1px;
-        background: var(--azure);
-        opacity: 0.5;
+        background: var(--amber);
+        opacity: 0.55;
         margin: 0 auto 1.1rem;
       }
 
@@ -219,14 +187,14 @@
         font-weight: 600;
         letter-spacing: 0.3em;
         text-transform: uppercase;
-        color: var(--water-author);
+        color: var(--periwinkle);
       }
 
       .hero-tagline {
         font-family: "Lora", Georgia, serif;
         font-style: italic;
         font-size: clamp(0.78rem, 1.3vw, 0.95rem);
-        color: var(--water-dim);
+        color: var(--text-muted);
         margin-top: 0.45rem;
       }
 
@@ -235,11 +203,12 @@
         bottom: 2rem;
         left: 50%;
         transform: translateX(-50%);
-        color: var(--water-shadow);
+        color: var(--amber);
         font-size: 1rem;
         text-decoration: none;
         animation: nudge 2.6s ease-in-out infinite;
         user-select: none;
+        opacity: 0.7;
       }
       @keyframes nudge {
         0%,
@@ -269,20 +238,15 @@
       }
 
       /* ─────────────────────────────────────────────────────────
-         DESCRIPTION  ·  deep water — pressure, stillness, blue
+         DESCRIPTION
          ───────────────────────────────────────────────────────── */
       .description {
-        background: var(--depth-pressure);
-        color: var(--water-body);
-        background-image: radial-gradient(
-          ellipse 90% 65% at 50% 105%,
-          var(--depth-rising) 0%,
-          transparent 85%
-        );
+        background: var(--amethyst-mid);
+        color: var(--text-body);
       }
 
       .description .section-label {
-        color: var(--seagrass);
+        color: var(--spring);
       }
 
       .description-inner {
@@ -295,7 +259,7 @@
         font-size: clamp(1.8rem, 4.5vw, 3rem);
         font-weight: 700;
         line-height: 1.1;
-        color: var(--water-bright);
+        color: var(--text-primary);
         margin-bottom: 0.75rem;
       }
 
@@ -307,14 +271,14 @@
         margin-bottom: 2.2rem;
       }
       .thin-rule--azure {
-        background: var(--azure);
-        opacity: 0.55;
+        background: var(--amber);
+        opacity: 0.4;
       }
 
       .description p {
         font-size: clamp(0.95rem, 1.35vw, 1.08rem);
         line-height: 1.92;
-        color: var(--water-muted);
+        color: var(--text-body);
         margin-bottom: 1.2rem;
       }
       .description p:last-child {
@@ -322,22 +286,16 @@
       }
 
       /* ─────────────────────────────────────────────────────────
-         EXCERPT  ·  rising — light starts to reach here
+         EXCERPT  ·  botanical midpoint — fern green
          ───────────────────────────────────────────────────────── */
       .excerpt {
-        background: var(--depth-rising);
-        color: var(--water-surface);
+        background: var(--fern);
+        color: var(--text-on-fern);
         text-align: center;
-        /* Warm amber bloom at the base — anticipates the golden hour above */
-        background-image: radial-gradient(
-          ellipse 90% 65% at 50% 105%,
-          rgba(247, 184, 1, 0.1) 0%,
-          transparent 80%
-        );
       }
 
       .excerpt .section-label {
-        color: var(--seagrass-dim);
+        color: rgba(255, 191, 0, 0.75);
       }
 
       .excerpt-inner {
@@ -358,7 +316,7 @@
       .excerpt blockquote {
         font-size: clamp(1.05rem, 1.85vw, 1.4rem);
         line-height: 1.85;
-        color: var(--water-quote);
+        color: var(--text-on-fern);
         margin-bottom: 2rem;
         text-align: justify;
       }
@@ -372,33 +330,21 @@
         font-size: 0.78rem;
         letter-spacing: 0.3em;
         text-transform: uppercase;
-        color: var(--water-cite);
+        color: rgba(232, 245, 236, 0.55);
         font-style: normal;
       }
 
       /* ─────────────────────────────────────────────────────────
-         SIGNUP  ·  breaking the surface — full golden hour
+         SIGNUP
          ───────────────────────────────────────────────────────── */
       .signup {
-        background: var(--amber);
-        /* Warm diffuse glow above, dusk shadow below — the surface, just before dark */
-        background-image:
-          linear-gradient(
-            to bottom,
-            transparent 60%,
-            rgba(24, 12, 0, 0.45) 100%
-          ),
-          radial-gradient(
-            ellipse 70% 80% at 50% 110%,
-            var(--amber-glow) 0%,
-            transparent 65%
-          );
-        color: var(--surface-dark);
+        background: var(--amethyst);
+        color: var(--text-primary);
         text-align: center;
       }
 
       .signup .section-label {
-        color: var(--amber-deep);
+        color: var(--spring);
       }
 
       .signup-inner {
@@ -411,29 +357,37 @@
         font-size: clamp(2rem, 4.5vw, 3.2rem);
         font-weight: 700;
         line-height: 1.18;
-        color: var(--surface-ink);
+        color: var(--text-primary);
         margin-bottom: 0.8rem;
       }
 
       .signup .subtext {
         font-style: italic;
         font-size: clamp(0.88rem, 1.3vw, 1rem);
-        color: var(--surface-subtext);
+        color: var(--text-body);
         margin-bottom: 2.6rem;
         line-height: 1.68;
       }
 
       /* ─────────────────────────────────────────────────────────
-         FOOTER  ·  warm dusk — the light settling
+         FOOTER
          ───────────────────────────────────────────────────────── */
       footer {
-        background: var(--dusk-dark);
-        color: var(--dusk-text);
+        background: var(--amethyst-deep);
+        color: rgba(188, 182, 255, 0.35);
         text-align: center;
         padding: 2.25rem 2rem;
         font-family: "Cormorant Garamond", serif;
         font-size: 0.83rem;
         letter-spacing: 0.15em;
+      }
+
+      footer a {
+        color: inherit;
+        transition: color 0.15s;
+      }
+      footer a:hover {
+        color: var(--amber);
       }
 
       /* ─────────────────────────────────────────────────────────
@@ -668,7 +622,7 @@
     <footer>
       <p>© 2026 Erin Linebarger</p>
       <p style="margin-top: 0.6rem; font-size: 0.72rem; opacity: 0.6">
-        <a href="privacy.html" style="color: inherit">Privacy Policy</a>
+        <a href="privacy.html">Privacy Policy</a>
       </p>
     </footer>
 
